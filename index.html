@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Center - Tool Giải Bài Tập ICTU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #f72585;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --success-color: #4cc9f0;
+            --warning-color: #f8961e;
+            --danger-color: #ef233c;
+            --border-radius: 10px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: none; /* Initially hidden */
+        }
+
+        /* Fullscreen Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalopen 0.5s;
+        }
+
+        @keyframes modalopen {
+            from {opacity: 0; transform: scale(0.8);}
+            to {opacity: 1; transform: scale(1);}
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin: 0;
+        }
+
+        .close-modal {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .modal-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-close {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .btn-2h {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .btn-confirm {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .setup-note {
+            background-color: rgba(247, 37, 133, 0.1);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .python-note {
+            background-color: rgba(76, 201, 240, 0.1);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .setup-note strong,
+        .python-note strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Video Tutorial Section */
+        .video-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .video-title i {
+            margin-right: 10px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-description {
+            margin-top: 1rem;
+            color: var(--dark-color);
+            opacity: 0.8;
+        }
+
+        .video-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .video-link:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        /* Rest of your styles... */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 1.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: var(--box-shadow);
+            border: 3px solid var(--primary-color);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .download-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .download-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-card:nth-child(2) {
+            border-top-color: var(--accent-color);
+        }
+
+        .download-card:nth-child(3) {
+            border-top-color: var(--success-color);
+        }
+
+        .download-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .download-card:nth-child(2) .card-icon {
+            background: linear-gradient(135deg, var(--accent-color), #b5179e);
+        }
+
+        .download-card:nth-child(3) .card-icon {
+            background: linear-gradient(135deg, var(--success-color), #4895ef);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: var(--dark-color);
+            opacity: 0.7;
+        }
+
+        .card-description {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #b5179e;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+        }
+
+        .btn-success:hover {
+            background-color: #4895ef;
+        }
+
+        .password-note {
+            font-size: 0.9rem;
+            color: var(--dark-color);
+            margin-top: 1rem;
+            text-align: center;
+            padding: 0.5rem;
+            background-color: rgba(67, 97, 238, 0.1);
+            border-radius: var(--border-radius);
+        }
+
+        .notice-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .notice-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--warning-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .notice-title i {
+            margin-right: 10px;
+        }
+
+        .notice-content {
+            margin-bottom: 1.5rem;
+        }
+
+        .notice-list {
+            list-style-type: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .notice-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .notice-list li:before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .shortcut-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .shortcut-card {
+            background-color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .shortcut-key {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .troubleshooting-section {
+            margin-top: 2rem;
+        }
+
+        .troubleshooting-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--danger-color);
+        }
+
+        .info-section {
+            background-color: rgba(76, 201, 240, 0.1);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+        }
+
+        .info-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--success-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .download-section {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .modal-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fullscreen Modal Notice -->
+    <div class="modal-overlay" id="noticeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Lưu ý quan trọng</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="notice-content">
+                    <p>Khi tải tool xuống, thông thường bạn cần giải nén file để sử dụng. Nếu file đã được giải nén sẵn, bạn chỉ cần chạy file trực tiếp.</p>
+                </div>
+                
+                <div class="setup-note">
+                    <strong><i class="fas fa-bolt"></i> Setup nhanh:</strong>
+                    <p>Tải file setup tự động để cài đặt tất cả thư viện cần thiết:</p>
+                    <a href="https://ictu.io.vn/toolbypass/setup.bat" class="btn" style="margin-top: 0.5rem; background-color: var(--accent-color);">
+                        <i class="fas fa-download"></i> Tải setup.bat ngay
+                    </a>
+                </div>
+                
+                <div class="python-note">
+                    <strong><i class="fab fa-python"></i> Lưu ý về Python 3.12:</strong>
+                    <p>Nếu tool yêu cầu Python để chạy, vui lòng tải và cài đặt Python 3.12 trước khi sử dụng:</p>
+                    <a href="https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe" class="btn" style="margin-top: 0.5rem;">
+                        <i class="fab fa-python"></i> Tải Python 3.12 ngay
+                    </a>
+                </div>
+                
+                <p><strong>Nếu gặp lỗi khi chạy tool, vui lòng:</strong></p>
+                <ul class="notice-list">
+                    <li>Tải và chạy file <strong>setup.bat</strong> để tự động cài đặt thư viện</li>
+                    <li>Cài đặt Python 3.12 nếu tool yêu cầu</li>
+                    <li>Đảm bảo đã tắt Windows Defender hoặc phần mềm diệt virus</li>
+                    <li>Chạy tool với quyền Administrator (nhấn chuột phải chọn "Run as administrator")</li>
+                    <li>Kiểm tra kết nối Internet ổn định</li>
+                    <li>Khởi động lại máy tính nếu cần thiết</li>
+                </ul>
+                
+                <div class="shortcut-section">
+                    <div class="shortcut-card">
+                        <p><span class="shortcut-key">Ctrl + 1</span> - Ẩn phần mềm</p>
+                    </div>
+                    <div class="shortcut-card">
+                        <p><span class="shortcut-key">Ctrl + 2</span> - Hiện phần mềm</p>
+                    </div>
+                    <div class="shortcut-card">
+                        <p><span class="shortcut-key">Ctrl + M</span> - Giải bài tập</p>
+                    </div>
+                    <div class="shortcut-card">
+                        <p><span class="shortcut-key">Ctrl + Shift</span> - Xem lịch sử hoạt động</p>
+                    </div>
+                    <div class="shortcut-card">
+                        <p><span class="shortcut-key">Nút "Đóng"</span> - Tắt phần mềm</p>
+                    </div>
+                    <div class="shortcut-card">
+                        <p><span class="shortcut-key">Alt + F4</span> - Đóng nhanh ứng dụng</p>
+                    </div>
+                </div>
+                
+                <div class="troubleshooting-section">
+                    <h3 class="troubleshooting-title"><i class="fas fa-tools"></i> Khắc phục sự cố thường gặp:</h3>
+                    <ul class="notice-list">
+                        <li>Nếu tool không chạy, thử tải lại file hoặc kiểm tra kết nối Internet</li>
+                        <li>Windows Defender có thể chặn file, cần tắt tạm thời hoặc thêm vào danh sách loại trừ</li>
+                        <li>Khởi động lại máy tính nếu gặp lỗi không xác định</li>
+                        <li>Đảm bảo đã tải đủ file (kiểm tra dung lượng file)</li>
+                        <li>Chạy với quyền admin nếu yêu cầu quyền hệ thống</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3 class="info-title"><i class="fas fa-info-circle"></i> Thông tin bổ sung:</h3>
+                    <p>Thời gian cập nhật: 15/06/2024</p>
+                    <p>Phiên bản hiện tại: 2.4.1</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn btn-close" id="closeNowBtn">Đóng ngay</button>
+                <button class="modal-btn btn-2h" id="closeFor2hBtn">Đóng trong 2 giờ</button>
+                <button class="modal-btn btn-confirm" id="confirmBtn">Tôi đã hiểu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until modal is closed) -->
+    <div class="container" id="mainContent">
+        <header>
+            <img src="https://via.placeholder.com/100" alt="ICTU Tool Logo" class="logo">
+            <h1>Download Center</h1>
+            <p class="subtitle">Tải xuống các công cụ đặc biệt được phát triển bởi đội ngũ chuyên nghiệp</p>
+        </header>
+        
+        <div class="download-section">
+            <div class="download-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Phiên bản nén</div>
+                        <div class="card-subtitle">Password giải nén: 1</div>
+                    </div>
+                </div>
+                <p class="card-description">Tải xuống file nén với password bảo vệ. Đảm bảo an toàn và bảo mật cho phần mềm.</p>
+                <div class="btn-group">
+                    <a href="https://drive.google.com/uc?export=download&id=1FxAKrbqiH02_wco8_dVRlZ-KJhZ0l76n" class="btn">
+                        <i class="fas fa-download"></i> Tải xuống
+                    </a>
+                </div>
+                <p class="password-note">
+                    <i class="fas fa-key"></i> Password giải nén: <strong>1</strong>
+                </p>
+            </div>
+            
+            <div class="download-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-file-archive"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Phiên bản không nén</div>
+                        <div class="card-subtitle">Dễ dàng sử dụng</div>
+                    </div>
+                </div>
+                <p class="card-description">Tải xuống file không nén, không cần password giải nén. Thuận tiện cho người dùng.</p>
+                <div class="btn-group">
+                    <a href="https://drive.google.com/uc?export=download&id=1qmUmucxF40B729pVq51eafGPwcVQggr6" class="btn btn-secondary">
+                        <i class="fas fa-download"></i> Tải xuống
+                    </a>
+                </div>
+            </div>
+            
+            <div class="download-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Phiên bản trực tiếp</div>
+                        <div class="card-subtitle">Chạy ngay không cần cài đặt</div>
+                    </div>
+                </div>
+                <p class="card-description">Tải xuống file thực thi trực tiếp không qua Google Drive. Tốc độ tải nhanh hơn.</p>
+                <div class="btn-group">
+                    <a href="https://ghichu.vn/daoanh.exe" class="btn btn-success">
+                        <i class="fas fa-download"></i> Tải xuống
+                    </a>
+                    <a href="https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe" class="btn">
+                        <i class="fab fa-python"></i> Python 3.12
+                    </a>
+                    <a href="https://ictu.io.vn/toolbypass/setup.bat" class="btn" style="background-color: var(--accent-color);">
+                        <i class="fas fa-bolt"></i> Tải setup.bat
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Video Tutorial Section -->
+        <div class="video-section">
+            <h2 class="video-title"><i class="fas fa-video"></i> Video Hướng Dẫn Sử Dụng</h2>
+            <div class="video-container">
+                <!-- Embed video from LMS or YouTube -->
+                <iframe src="https://youtu.be/AuKoPXMLImI?t=2311" allowfullscreen></iframe>
+            </div>
+            <p class="video-description">Video hướng dẫn chi tiết cách sử dụng tool giải bài tập ICTU từ A đến Z.</p>
+            <a href="https://youtu.be/AuKoPXMLImI?t=2311" class="video-link" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Xem thêm hướng dẫn trên LMS ICTU
+            </a>
+        </div>
+
+        <div class="notice-section">
+            <div class="setup-note">
+                <strong><i class="fas fa-bolt"></i> Setup nhanh:</strong>
+                <p>Tải file setup tự động để cài đặt tất cả thư viện cần thiết:</p>
+                <a href="https://ictu.io.vn/toolbypass/setup.bat" class="btn" style="background-color: var(--accent-color);">
+                    <i class="fas fa-download"></i> Tải setup.bat ngay
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2024 Download Center - Tool Giải Bài Tập ICTU. Đây là công cụ hỗ trợ học tập, không khuyến khích sử dụng để gian lận.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Check if notice should be hidden
+        function shouldHideNotice() {
+            const hideUntil = localStorage.getItem('hideNoticeUntil');
+            if (hideUntil && Date.now() < parseInt(hideUntil)) {
+                return true;
+            }
+            return false;
+        }
+
+        // Show main content and hide modal
+        function showContent() {
+            document.getElementById('noticeModal').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Show modal on load if not hidden
+        document.addEventListener('DOMContentLoaded', function() {
+            if (shouldHideNotice()) {
+                showContent();
+            } else {
+                document.getElementById('noticeModal').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+
+        // Close modal buttons
+        document.getElementById('closeModal').addEventListener('click', showContent);
+        document.getElementById('closeNowBtn').addEventListener('click', showContent);
+        document.getElementById('confirmBtn').addEventListener('click', showContent);
+
+        // Close for 2 hours button
+        document.getElementById('closeFor2hBtn').addEventListener('click', function() {
+            localStorage.setItem('hideNoticeUntil', Date.now() + 7200000); // 2 hours
+            showContent();
+        });
+
+        // Prevent closing by clicking outside
+        document.getElementById('noticeModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                e.stopPropagation();
+            }
+        });
+
+        // Add click effects for download buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!this.href.includes('#')) {
+                    alert('Chuẩn bị tải xuống... Vui lòng chờ trong giây lát!');
+                    console.log(`Đã click tải xuống: ${this.textContent.trim()}`);
+                }
+            });
+        });
+        
+        // Add hover effects for cards
+        document.querySelectorAll('.download-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = 'var(--box-shadow)';
+            });
+        });
+    </script>
+</body>
+</html>
