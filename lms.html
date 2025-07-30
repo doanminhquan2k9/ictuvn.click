@@ -1,6 +1,133 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+  <meta charset="UTF-8">
+  <title>Chặn Ctrl + U</title>
+  <script>
+    document.addEventListener('keydown', function(e) {
+      // Kiểm tra nếu người dùng nhấn Ctrl + U
+      if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+        e.preventDefault(); // Ngăn hành vi mặc định
+        window.location.href = "https://lms.ictu.edu.vn/"; // Chuyển hướng
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>🔒 Trang đã được bảo vệ!</h1>
+  <p>Không thể xem mã nguồn bằng tổ hợp phím Ctrl + U.</p>
+</body>
+</html>
+
+
+
+<div id="devtools-blocker-unique-overlay">
+    <div class="devtools-blocker-unique-message">
+        <h1>Phát hiện Công cụ Nhà phát triển (F12)</h1>
+        <p>Vui lòng đóng công cụ và tải lại trang để tiếp tục sử dụng website.</p>
+        <p>Hệ thống sẽ tự động tải lại khi bạn đóng công cụ.</p>
+    </div>
+</div>
+
+<style>
+    #devtools-blocker-unique-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        z-index: 99999999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .devtools-blocker-unique-message h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: #ff5555;
+    }
+
+    .devtools-blocker-unique-message p {
+        font-size: 1.2em;
+        line-height: 1.6;
+    }
+    
+    .devtools-blocker-no-scroll-unique {
+        overflow: hidden !important;
+    }
+</style>
+
+<script>
+(function() {
+    'use strict';
+
+    const devtoolsBlockerOverlay = document.getElementById('devtools-blocker-unique-overlay');
+    const devtoolsDetectionThreshold = 160;
+    let devtoolsIsOpen = false;
+
+    function showBlocker() {
+        devtoolsIsOpen = true;
+        devtoolsBlockerOverlay.style.display = 'flex';
+        document.body.classList.add('devtools-blocker-no-scroll-unique');
+    }
+
+    // --- THÊM HÀM MỚI ĐỂ ẨN BLOCKER ---
+    function hideBlocker() {
+        devtoolsIsOpen = false;
+        devtoolsBlockerOverlay.style.display = 'none';
+        document.body.classList.remove('devtools-blocker-no-scroll-unique');
+    }
+
+    function checkDevTools() {
+        const startTime = new Date().getTime();
+        
+        debugger;
+
+        const endTime = new Date().getTime();
+        const elapsedTime = endTime - startTime;
+
+        if (elapsedTime > devtoolsDetectionThreshold) {
+            if (!devtoolsIsOpen) {
+                showBlocker();
+            }
+        } else {
+            if (devtoolsIsOpen) {
+                // --- THAY ĐỔI TẠI ĐÂY ---
+                // Thay vì tải lại trang, chúng ta gọi hàm để ẩn blocker đi
+                hideBlocker(); 
+            }
+        }
+    }
+
+    const devtoolsCheckInterval = setInterval(checkDevTools, 500);
+    checkDevTools();
+
+    window.addEventListener('keydown', function(event) {
+        if (event.key === 'F12' || 
+           (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J' || event.key === 'C')) || 
+           (event.ctrlKey && event.key === 'U')) {
+            event.preventDefault();
+            showBlocker();
+        }
+    });
+
+    window.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+    });
+
+})();
+</script>
+
+
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Phần Mềm - Tool Giải Bài Tập ICTU</title>
