@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 - Lạc trong không gian!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at bottom, #000010, #000000);
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .star {
+      width: 2px;
+      height: 2px;
+      background: white;
+      position: absolute;
+      border-radius: 50%;
+      animation: twinkle 2s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 6rem;
+      color: #00ffff;
+      text-shadow: 0 0 20px #00ffff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.4rem;
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+
+    .astronaut {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #00ffff;
+      color: #000;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 10px #00ffff;
+      transition: 0.3s ease;
+    }
+
+    a:hover {
+      background: #00bbcc;
+      box-shadow: 0 0 15px #00bbcc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <div class="content">
+    <img class="astronaut" src="https://cdn-icons-png.flaticon.com/512/3219/3219113.png" alt="Astronaut" width="120">
+    <h1>404</h1>
+    <p>Oops! Bạn đã lạc vào vùng không gian không tồn tại 🌌</p>
+    <a href="/">🔙 Trở về Trang Chủ</a>
+  </div>
+
+  <script>
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDuration = `${Math.random() * 2 + 2}s`;
+      starsContainer.appendChild(star);
+    }
+  </script>
+
+</body>
+</html>
