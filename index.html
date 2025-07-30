@@ -101,6 +101,161 @@
 </script>
 
 
+<style>
+    .scroll-top-wrapper {
+        position: fixed;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        text-align: center;
+        z-index: 99999999;
+        background-color: #777;
+        color: #eee;
+        width: 50px;
+        height: 48px;
+        line-height: 48px;
+        right: 30px;
+        bottom: 30px;
+        padding-top: 2px;
+        border-radius: 10px;
+        transition: all 0.5s ease-in-out;
+    }
+    .scroll-top-wrapper:hover {
+        background-color: #888;
+    }
+    .scroll-top-wrapper.show {
+        visibility: visible;
+        cursor: pointer;
+        opacity: 1;
+    }
+    .scroll-top-wrapper i.fa {
+        line-height: inherit;
+    }
+</style>
+
+<script type="text/javascript">
+    function acceptCookies() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        document.getElementById('cookie-consent').style.display = 'none';
+    }
+    
+    window.onload = function() {
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookie-consent').style.display = 'flex';
+        }
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/simple-notify@1.0.4/dist/simple-notify.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@1.0.4/dist/simple-notify.css" />
+
+<script type="text/javascript">
+    function fetchNotifications() {
+        fetch('/api/get_noti.php')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(notification => {
+                    new Notify({
+                        status: 'success',
+                        title: 'Nạp tiền thành công!',
+                        text: notification.message,
+                        effect: 'slide',
+                        speed: 300,
+                        autoclose: true,
+                        autotimeout: 5000,
+                        position: 'right top'
+                    });
+                });
+            })
+            .catch(error => console.error('Lỗi khi tải thông báo:', error));
+    }
+    setInterval(fetchNotifications, 1000);
+</script>
+
+<script type="text/javascript">
+    (function() {
+        const blockDevTools = () => {
+            console.clear();
+            console.log('%cARRAYCYBERMMO', 'font-size: 40px; color: red; font-weight: bold;');
+            new Notify({
+                status: 'error',
+                title: 'Warning',
+                text: 'DevTools is not allowed! ARRAY CYBER',
+                effect: 'fade',
+                speed: 300,
+                customClass: '',
+                showIcon: true,
+                closeButton: true,
+                autoclose: true,
+                autotimeout: 3000,
+                gap: 10
+            });
+            debugger;
+        };
+        
+        const detectDevTools = () => {
+            const element = new Image();
+            Object.defineProperty(element, 'id', {
+                get: () => {
+                    blockDevTools();
+                    throw new Error('DevTools Blocked');
+                }
+            });
+            console.log(element);
+        };
+        
+        const preventElementAccess = () => {
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+                    (e.ctrlKey && e.key === 'U')) {
+                    e.preventDefault();
+                    new Notify({
+                        status: 'error',
+                        title: 'Blocked',
+                        text: 'Action is not allowed! ARRAY CYBER',
+                        effect: 'slide',
+                        speed: 300,
+                        customClass: '',
+                        showIcon: true,
+                        closeButton: true,
+                        autoclose: true,
+                        autotimeout: 3000,
+                        gap: 10
+                    });
+                }
+            });
+            
+            document.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                new Notify({
+                    status: 'error',
+                    title: 'Blocked',
+                    text: 'Right-click is disabled! ARRAY CYBER',
+                    effect: 'slide',
+                    speed: 300,
+                    customClass: '',
+                    showIcon: true,
+                    closeButton: true,
+                    autoclose: true,
+                    autotimeout: 3000,
+                    gap: 10
+                });
+            });
+        };
+        
+        detectDevTools();
+        preventElementAccess();
+    })();
+</script>
+
+<div class="scroll-top-wrapper">
+    <span class="scroll-top-inner">
+        <i class="fa fa-2x fa-arrow-circle-up"></i>
+    </span>
+</div>
+
+
 
 
 
