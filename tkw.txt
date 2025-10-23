@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đơn Xin Việc </title>
+</head>
+<body>
+    <div class="form">
+        <form action="">
+            <div class="tieude">
+                <h2>Đơn Xin Việc</h2>
+                <h3>Nhập Thông Tin Ứng Tuyển. CV Định Dạng PDF</h3>
+            </div>
+            <div class="main">
+                <div>
+                    <label for="">Họ Tên</label>
+                    <br>
+                    <input type="text" name="hoten" id="hoten" placeholder="Nguyễn Văn A" required>
+                    <br>
+                    <small> Vui lòng nhập họ tên</small>
+                </div>
+                <div>
+                    <label for="">Email</label>
+                    <br>
+                    <input type="email" name="email" id="email" placeholder="email@gmail.com" required>
+                    <br>
+                    <small> Email không Hợp Lệ</small>
+                </div>
+                <div>
+                    <label for="">Điện Thoại</label>
+                    <br>
+                    <input type="tel" name="tel" id="tel" placeholder="0xxxxxxxxx" pattern="0[0-9]{9}" required>
+                     <br>
+                     <small> Số điện thoại phải là 10 số và bắt đầu bằng số 0</small>
+                </div>
+                <div>
+                    <label for="">Giới Tính</label>
+                    <br>
+                    <select name="" id="gioitinh">
+                        <option value="">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">Trình Độ</label>
+                    <br>
+                    <select name="" id="trinhdo">
+                        <option value="">Cao Đẳng</option>
+                        <option value="Đại Học">Đại Học</option>
+                        <option value="Kĩ Sư">Kĩ Sư</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">Kinh Nghiệm (năm)</label> 
+                    <br>
+                    <input type="number" name="number" id="number" placeholder="0-40" min="0" max="40" required> 
+                    <div>
+                        <label for="">Kỹ năng</label>
+                        <br>
+                        <textarea name="" id="kn" placeholder="Ví dụ javasript, React , html ......" required></textarea>
+                    </div>
+                    <div>
+                    <label for="">CV (PDF &le; 5MB)</label>
+                    <br>
+                    <input type="file" id="CV" accept=".pdf" required>
+                    <br>
+                    <small>Chỉ Chọn Tệp PDF</small>
+                    <br>
+                    <small>Vui Lòng Chọn Tệp CV(PDF)</small>
+                    </div>
+                </div>
+            </div>
+            <div class="button">
+                <button type="submit">Gửi Hồ Sơ</button>
+                <button type="reset"> Làm Lại </button>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>
