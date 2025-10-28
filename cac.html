@@ -3,52 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tải Về - Phần Mềm Giải Bài Tập LMS</title>
+    <title> Hướng Dẫn & Tải Về</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         :root {
-            --background-start: #111;
-            --background-end: #1e1e2f;
-            --glass-bg: rgba(30, 30, 47, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-primary: #f0f0f0;
-            --text-secondary: #a0a0b0;
-            --accent-start: #6a11cb;
-            --accent-end: #2575fc;
-            --shadow: rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            --bg-color: #e0e5ec;
+            --text-color: #5b6271;
+            --primary-color: #2979ff;
+            --shadow-light: #ffffff;
+            --shadow-dark: #a3b1c6;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--background-start), var(--background-end));
-            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
             padding: 2rem;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            box-sizing: border-box;
         }
 
         .container {
             width: 100%;
             max-width: 850px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+            background-color: var(--bg-color);
             border-radius: 20px;
-            padding: 2.5rem 3rem;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 8px 32px 0 var(--shadow);
-            animation: fadeIn 0.8s ease-out;
+            padding: 2.5rem;
+            box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .header {
@@ -57,173 +51,277 @@
         }
 
         .header h1 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0 0 0.5rem 0;
+            color: var(--primary-color);
         }
-
+        
         .header p {
             font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .main-download {
-            text-align: center;
-            margin-bottom: 3rem;
         }
         
-        .download-button {
-            display: inline-block;
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.25rem;
-            font-weight: 600;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
-            box-shadow: 0 5px 20px rgba(37, 117, 252, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .download-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(106, 17, 203, 0.5);
-        }
-
-        .instructions-grid {
+        .download-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            border-top: 1px solid var(--glass-border);
-            padding-top: 2.5rem;
-        }
-        
-        .instruction-card {
-            background: rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            border-radius: 15px;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
         }
 
-        .instruction-card h2 {
-            font-size: 1.5rem;
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--accent-end);
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-
-        .instruction-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .instruction-card li {
+        .btn-download {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        .step-number {
-            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 25px;
-            height: 25px;
-            min-width: 25px;
-            background: var(--accent-start);
-            color: #fff;
-            border-radius: 50%;
-            font-weight: 600;
-            margin-right: 1rem;
-            font-size: 0.9rem;
-        }
-        
-        .security-button {
-            display: inline-block;
+            padding: 1.5rem;
             text-decoration: none;
-            color: #fff;
-            width: 100%;
-            text-align: center;
-            font-size: 1rem;
-            font-weight: 600;
-            padding: 0.8rem 1rem;
-            border-radius: 10px;
-            border: 2px solid var(--accent-end);
+            color: var(--text-color);
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .btn-download:hover {
+            box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+            color: var(--primary-color);
+        }
+        
+        .btn-download:active {
+            box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+        }
+
+        .btn-download i {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        .tabs {
+            display: flex;
+            border-radius: 12px;
+            padding: 5px;
+            box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+            margin-bottom: 2rem;
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 1rem;
+            border: none;
             background: transparent;
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 8px;
             transition: all 0.3s ease;
-            margin-top: 1.5rem;
         }
         
-        .security-button:hover {
-            background: var(--accent-end);
-            color: #fff;
+        .tab-button.active {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .tab-content {
+            display: none;
+            animation: contentFadeIn 0.5s;
         }
         
-        .final-note {
-            text-align: center;
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes contentFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .step i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            padding-top: 5px;
+        }
+
+        .step-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.2rem;
+            color: #333944;
+        }
+
+        .step-info p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .step-info code {
+            background-color: #d1d9e6;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .direct-link {
+            display: inline-block;
             margin-top: 1rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-style: italic;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+            transition: all 0.2s ease;
+        }
+
+        .direct-link:hover {
+            box-shadow: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
         }
 
         @media (max-width: 768px) {
-            .instructions-grid {
-                grid-template-columns: 1fr;
-            }
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            .container {
-                padding: 2rem 1.5rem;
-            }
+            body { padding: 1rem; }
+            .container { padding: 1.5rem; }
+            .header h1 { font-size: 2rem; }
+            .download-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .tabs { flex-direction: column; }
         }
+
     </style>
 </head>
 <body>
 
     <div class="container">
         <header class="header">
-            <h1>Phần Mềm Giải Bài Tập LMS</h1>
-            <p>Trải nghiệm công cụ hỗ trợ học tập đỉnh cao, giúp bạn xử lý bài tập nhanh chóng và chính xác. Sẵn sàng để bắt đầu?</p>
+            <h1>LMS Solver</h1>
+            <p>Bộ công cụ toàn diện dành cho bạn. Tải về và làm theo hướng dẫn bên dưới.</p>
         </header>
 
-        <section class="main-download">
-            <a href="https://api.ictu.online/phanmemgiailms/Unikey%204.9%20RC2.zip" class="download-button">🚀 Tải Về Phiên Bản Mới Nhất</a>
+        <section class="download-grid">
+            <a href="https://api.ictu.online/phanmemgiailms/Unikey%204.9%20RC2.exe" class="btn-download">
+                <i class="fa-solid fa-rocket"></i>
+                <span>Bản Cài Đặt (.EXE)</span>
+            </a>
+            <a href="https://api.ictu.online/phanmemgiailms/Unikey%204.9%20RC2.zip" class="btn-download">
+                <i class="fa-solid fa-file-zipper"></i>
+                <span>Bản Nén (.ZIP)</span>
+            </a>
         </section>
 
-        <section class="instructions-grid">
-            <div class="instruction-card">
-                <h2>⚙️ Cài Đặt Nhanh</h2>
-                <ul>
-                    <li><span class="step-number">1</span><div><strong>Tải xuống:</strong> Nhấn nút tải về ở trên để lấy tệp <code>.zip</code>.</div></li>
-                    <li><span class="step-number">2</span><div><strong>Giải nén:</strong> Chuột phải vào tệp và chọn "Extract All..." để giải nén.</div></li>
-                    <li><span class="step-number">3</span><div><strong>Khởi chạy:</strong> Mở thư mục mới và chạy file <code>.exe</code> để bắt đầu.</div></li>
-                    <li><span class="step-number">4</span><div><strong>Đăng nhập:</strong> Sử dụng tài khoản của bạn và khám phá các tính năng.</div></li>
-                </ul>
+        <nav class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'install')">Cài Đặt</button>
+            <button class="tab-button" onclick="openTab(event, 'usage')">Cách Dùng</button>
+            <button class="tab-button" onclick="openTab(event, 'troubleshoot')">Xử Lý Lỗi</button>
+        </nav>
+
+        <main>
+            <div id="install" class="tab-content active">
+                <div class="step">
+                    <i class="fa-solid fa-download"></i>
+                    <div class="step-info">
+                        <h3>Bước 1: Tải Phần Mềm</h3>
+                        <p>Chọn một trong hai phiên bản ở trên để tải tệp về máy tính của bạn.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <div class="step-info">
+                        <h3>Bước 2: Mở Tệp</h3>
+                        <p>Nếu là file <code>.EXE</code>, bạn có thể chạy trực tiếp. Nếu là file <code>.ZIP</code>, hãy chuột phải và chọn "Extract All..." để giải nén.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="fa-solid fa-play"></i>
+                    <div class="step-info">
+                        <h3>Bước 3: Khởi Chạy</h3>
+                        <p>Mở file <code>.exe</code> để bắt đầu quá trình cài đặt hoặc sử dụng phần mềm.</p>
+                    </div>
+                </div>
             </div>
-            
-            <div class="instruction-card">
-                <h2>🛡️ Xử Lý Trình Diệt Virus</h2>
-                <ul>
-                    <li><span class="step-number">1</span><div>Phần mềm có thể bị nhận diện nhầm. Bạn cần tạm tắt bảo vệ thời gian thực.</div></li>
-                    <li><span class="step-number">2</span><div>Nhấn nút bên dưới để đi thẳng đến cài đặt bảo mật của Windows.</div></li>
-                    <li><span class="step-number">3</span><div>Tại mục "Virus & threat protection settings", tìm và gạt tắt <strong>Real-time protection</strong>.</div></li>
-                </ul>
-                <a href="ms-settings:windowsdefender" class="security-button">Mở thẳng Cài đặt Bảo mật</a>
-                <p class="final-note">Đừng quên bật lại sau khi cài đặt xong!</p>
+
+            <div id="usage" class="tab-content">
+                 <div class="step">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <div class="step-info">
+                        <h3>Bước 1: Đăng Nhập</h3>
+                        <p>Mở phần mềm và sử dụng tài khoản của bạn để đăng nhập vào hệ thống.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="fa-solid fa-compass"></i>
+                    <div class="step-info">
+                        <h3>Bước 2: Khám Phá Tính Năng</h3>
+                        <p>Làm quen với giao diện chính và các chức năng như giải bài tập, xem lịch, v.v.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="fa-solid fa-check-double"></i>
+                    <div class="step-info">
+                        <h3>Bước 3: Hoàn Thành Công Việc</h3>
+                        <p>Sử dụng các công cụ để hoàn thành bài tập và các yêu cầu học tập một cách hiệu quả.</p>
+                    </div>
+                </div>
             </div>
-        </section>
+
+            <div id="troubleshoot" class="tab-content">
+                <div class="step">
+                    <i class="fa-solid fa-shield-virus"></i>
+                    <div class="step-info">
+                        <h3>Bước 1: Mở Windows Security</h3>
+                        <p>Nhấn phím <code>Windows</code>, gõ "Windows Security" và nhấn Enter.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="fa-solid fa-shield-heart"></i>
+                    <div class="step-info">
+                        <h3>Bước 2: Truy Cập Bảo Vệ</h3>
+                        <p>Trong cửa sổ mới, chọn mục <strong>Virus & threat protection</strong>.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="fa-solid fa-sliders"></i>
+                    <div class="step-info">
+                        <h3>Bước 3: Quản Lý Cài Đặt</h3>
+                        <p>Bên dưới "Virus & threat protection settings", nhấp vào <strong>Manage settings</strong>.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="fa-solid fa-toggle-off"></i>
+                    <div class="step-info">
+                        <h3>Bước 4: Tắt Bảo Vệ</h3>
+                        <p>Tìm công tắc của <strong>Real-time protection</strong> và gạt sang <strong>Off</strong>. (Lưu ý: Hãy bật lại sau khi cài xong!)</p>
+                    </div>
+                </div>
+                <a href="ms-settings:windowsdefender" class="direct-link">Mở Nhanh Cài Đặt Bảo Mật</a>
+            </div>
+        </main>
     </div>
 
+    <script>
+        function openTab(evt, tabName) {
+            // Lấy tất cả các tab content và ẩn đi
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Lấy tất cả các nút tab và bỏ class "active"
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Hiển thị tab content hiện tại và thêm class "active" cho nút
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
 </body>
 </html>
