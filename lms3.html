@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ẩn Danh Download</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #e0e5ec;
+            --text-main: #4a4a4a;
+            --text-light: #a3b1c6;
+            
+            /* Màu điểm nhấn */
+            --blue: #4b70e2;
+            --red: #e04f5f;
+            --yellow: #f5b041;
+            --purple: #af7ac5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-card {
+            width: 100%;
+            max-width: 450px;
+            background-color: var(--bg-color);
+            border-radius: 30px;
+            padding: 40px 30px;
+            /* Neumorphism Shadow */
+            box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), 
+                       -9px -9px 16px rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .avt-box {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--text-main); /* Màu tối cho hợp ẩn danh */
+            background-color: var(--bg-color);
+            box-shadow: 6px 6px 10px rgba(163, 177, 198, 0.6), 
+                       -6px -6px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 1px;
+            text-transform: uppercase; /* Viết hoa cho ngầu */
+        }
+
+        .header p {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .list-group {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .soft-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 25px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            transition: all 0.2s ease;
+            box-shadow: 6px 6px 10px rgba(163, 177, 198, 0.6), 
+                       -6px -6px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .left-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.6), 
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+        }
+
+        .c-blue { color: var(--blue); }
+        .c-red { color: var(--red); }
+        .c-yellow { color: var(--yellow); }
+        .c-purple { color: var(--purple); }
+
+        .text-group {
+            text-align: left;
+        }
+
+        .text-group h3 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .text-group span {
+            font-size: 11px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .soft-btn:active, .soft-btn.clicked {
+            box-shadow: inset 6px 6px 10px rgba(163, 177, 198, 0.6), 
+                        inset -6px -6px 10px rgba(255, 255, 255, 0.5);
+            transform: scale(0.98);
+        }
+
+        .soft-btn:hover {
+            color: var(--blue);
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-card">
+        <div class="header">
+            <div class="avt-box">
+                <i class="fa-solid fa-user-secret"></i>
+            </div>
+            <h1>ẨN DANH</h1>
+            <p>Private Download Center</p>
+        </div>
+
+        <div class="list-group">
+            
+            <a href="https://bienter.click/crack/ICTUTesting.seb" class="soft-btn" onclick="animateBtn(this)">
+                <div class="left-content">
+                    <div class="icon-circle c-blue">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="text-group">
+                        <h3>Cấu hình SEB</h3>
+                        <span>File hệ thống (.seb)</span>
+                    </div>
+                </div>
+                <div class="status-dot" style="background: var(--blue);"></div>
+            </a>
+
+            <a href="https://bienter.click/crack/abc.exe" class="soft-btn" onclick="animateBtn(this)">
+                <div class="left-content">
+                    <div class="icon-circle c-red">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <div class="text-group">
+                        <h3>Tool Bypass V2</h3>
+                        <span>Tool hỗ trợ (.exe)</span>
+                    </div>
+                </div>
+                <div class="status-dot" style="background: var(--red);"></div>
+            </a>
+
+            <a href="https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe" class="soft-btn" onclick="animateBtn(this)">
+                <div class="left-content">
+                    <div class="icon-circle c-yellow">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <div class="text-group">
+                        <h3>Python 3.11.9</h3>
+                        <span>Environment (.exe)</span>
+                    </div>
+                </div>
+                <div class="status-dot" style="background: var(--yellow);"></div>
+            </a>
+
+            <a href="https://bienter.click/crack/Tri%E1%BA%BFt%20H%E1%BB%8Dc%20Marx%20-%20Lenin_B%C3%A0i%201%20-%20Bai%209.docx" class="soft-btn" onclick="animateBtn(this)">
+                <div class="left-content">
+                    <div class="icon-circle c-purple">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+                    <div class="text-group">
+                        <h3>Tài Liệu Triết</h3>
+                        <span>Tổng hợp (.zip)</span>
+                    </div>
+                </div>
+                <div class="status-dot" style="background: var(--purple);"></div>
+            </a>
+
+        </div>
+
+        <div class="footer">
+            Designed by ẨN DANH • Neumorphism
+        </div>
+    </div>
+
+    <script>
+        function animateBtn(element) {
+            element.classList.add('clicked');
+            setTimeout(() => {
+                element.classList.remove('clicked');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
